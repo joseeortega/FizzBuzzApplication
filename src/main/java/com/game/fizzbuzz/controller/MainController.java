@@ -2,7 +2,6 @@ package com.game.fizzbuzz.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Vector;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -15,7 +14,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.game.fizzbuzz.model.Game;
@@ -23,7 +21,6 @@ import com.game.fizzbuzz.thread.GenerateSequenceThread;
 
 /**
  * The Fizz-Buzz's main controllers based on Rest's entry points
- * 
  * @author Jose Márquez
  * @version 1.0.0
  * @date 4-10-18
@@ -38,6 +35,9 @@ public class MainController {
 	
 	@Value("${threadCallExceptionMessage}")
 	private String threadCallExceptionMessage;
+	
+	@Value("${numEinsteinOutOfRangeExceptionMessage}")
+	private String numEinsteinOutOfRangeExceptionMessage;
 
 	/**
 	 * This function is used as entry point in order to return the max number limit
@@ -68,14 +68,21 @@ public class MainController {
 		
 		ArrayList<String> sequence = new ArrayList<String>();
 		
-		fizzBuzzGame.setNumEinstein(numRandom);
-		try {
-			ExecutorService executor = Executors.newCachedThreadPool();
-		    Future<ArrayList<String>> futureCall = executor.submit(new GenerateSequenceThread(fizzBuzzGame));
-		    sequence=futureCall.get(); // Here the thread will be blocked 
-		} catch (Exception ex) {
-			Logger.getLogger(getClass().getName()).log(Level.WARNING,threadCallExceptionMessage + "\n" + ex.getMessage());
+		if(numRandom>=fizzBuzzGame.getMinNum() && numRandom<=fizzBuzzGame.getMaxNum()) {
+			fizzBuzzGame.setNumEinstein(numRandom);
+			try {
+				ExecutorService executor = Executors.newCachedThreadPool();
+			    Future<ArrayList<String>> futureCall = executor.submit(new GenerateSequenceThread(fizzBuzzGame));
+			    sequence=futureCall.get(); // Here the thread will be blocked 
+			} catch (Exception ex) {
+				Logger.getLogger(getClass().getName()).log(Level.WARNING,threadCallExceptionMessage + "\n" + ex.getMessage());
+				sequence=null;
+			}
+		}else {
+			Logger.getLogger(getClass().getName()).log(Level.WARNING,numEinsteinOutOfRangeExceptionMessage);
+			sequence=null;
 		}
+		
 		
 		return sequence;
 

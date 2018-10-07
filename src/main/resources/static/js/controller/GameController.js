@@ -10,8 +10,9 @@
   angular.module("fizzBuzzApp").controller("gameController",["$scope","$window","gameService",function($scope,$window,gameService){
 	  
 	//Variables
-	$scope.game= new Game();
-	$scope.sequence = null;
+	$scope.game;
+	$scope.sequence;
+	$scope.errorGame;
 
     /**
     * @name= getLimitsNumbers()
@@ -48,18 +49,27 @@
           if ($scope.game.getNumEinstein() != null) {
         	  gameService.run($scope.game.getNumEinstein()).then(function success(response) {
               if (response.data!=null) {
-            	  $scope.sequence=response.data;
-            	  console.log(response.data);
+            	  if(response.data.length!=0){
+            		  $scope.sequence=response.data;
+            	  }else{
+            		  $scope.errorGame=true;
+                	  console.log("Error occurred in GameController (method -> run) no elements received");  
+            	  }
+            	  
               } else {
+            	  $scope.errorGame=true;
             	  console.log("Error occurred in GameController (method -> run) null response"); 
               }
             }, function error(response) {
+            	$scope.errorGame=true;
             	console.log("Error occurred in GameController (method -> run) error response");
             });
           } else {
+        	  $scope.errorGame=true;
         	  console.log("Error occurred in GameController (method -> run) The Einstein's number is null");
           }
         } catch (e) {
+        	$scope.errorGame=true;
         	console.log("Error occurred in GameController (method -> run) exception");
         }
       }
@@ -73,6 +83,26 @@
      */
     $scope.setNullSequence = function(){
     	$scope.sequence=null;
+    }
+    
+    /**
+     * @name= initialize()
+     * @author= Jose Ortega
+     * @version = 1.0
+     * @description = This function is used to initialize all variables
+     * @date= 05-10-2018
+     */
+    $scope.initialize = function(){
+    	
+    	try{
+	    	$scope.game= new Game();
+	    	$scope.sequence = null;
+	    	$scope.errorGame=false;
+	    	$scope.getLimitsNumbers();
+    	} catch (e) {
+        	$scope.errorGame=true;
+        	console.log("Error occurred in GameController (method -> initialize) exception");
+        }
     }
     
   }]);

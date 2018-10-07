@@ -24,7 +24,9 @@
 
 </head>
 <body class="text-center">
+
 	<header class="blog-header py-3 bg-dark">
+	
 		<div class="d-flex justify-content-end align-items-center">
 			<div class="col-4 text-center">
 				<p class="blog-header-logo text-light font-italic">
@@ -32,50 +34,69 @@
 				</p>
 			</div>
 		</div>
+		
 	</header>
-	<main class="container mt-4" ng-init="getLimitsNumbers()" ng-controller="gameController">
-		<h1>Fizz-Buzz App</h1>
-		<p class="lead mt-4">About this game</p>
-		<section class="text-justify mt-4">
-			<p>Fizz buzz is a group word game for children to teach them about
-				division. Players take turns to count incrementally, replacing any
-				number divisible by three with the word "fizz", and any number
-				divisible by five with the word "buzz".</p>
-			<p>
-				<span class="font-weight-bold">For example</span>, a typical round of
-				fizz buzz would start as follows:
+	
+	<main class="container mt-4" ng-init="initialize()" ng-controller="gameController">
+	
+		<article>
+		
+			<h1>Fizz-Buzz App</h1>
+			<p class="lead mt-4">About this game</p>
+			
+			<section class="text-justify mt-4">
+				<p>Fizz buzz is a group word game for children to teach them about
+					division. Players take turns to count incrementally, replacing any
+					number divisible by three with the word "fizz", and any number
+					divisible by five with the word "buzz".</p>
+				<p>
+					<span class="font-weight-bold">For example</span>, a typical round of
+					fizz buzz would start as follows:
+				</p>
+				<p class="font-italic">1, 2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz,
+					Buzz, 11, Fizz, 13, 14, Fizz Buzz, 16, 17, Fizz, 19, Buzz, Fizz, 22,
+					23, Fizz, Buzz, 26, Fizz, 28, 29, Fizz Buzz, 31, 32, Fizz, 34, Buzz,
+					Fizz, ...</p>
+			</section>
+			
+		</article>
+		
+		<article ng-if="errorGame==false">
+			
+			<section class="mt-4" ng-if="sequence==null">
+				<h3 class="mb-4">Do you want to play?</h3>
+				<button type="button" class="btn btn-primary" ng-click="game.generateEinsteinNumber();sequence=null">forces Einstein to select a number</button>
+				<button type="button" class="btn btn-success" ng-disabled="game.getNumEinstein()==0 || game.getNumEinstein()==null || game.getNumEinstein() == undefined" ng-click="run()">Play</button>
+			</section>
+		
+			<section class="jumbotron" ng-if="sequence!=null">
+				<h1 class="display-4">Einstein loves play!</h1>
+				<ul class="list-inline mt-4">
+					<li class="list-inline-item" ng-repeat="value in sequence track by $index">{{value}} ,</li>
+				</ul>
+				<hr class="my-4">
+				<p class="lead">
+					<button class="btn btn-primary btn-lg" ng-click="setNullSequence() ; game.setNumEinstein(undefined)">Back</button>
+				</p>
+			</section>
+		
+			<img src="images/einstein.png" alt="Einstein" class="img-thumb">
+			<p class="font-italic" ng-if="game.getNumEinstein()!=0 && game.getNumEinstein()!=null && game.getNumEinstein() != undefined">
+				Einstein made a difficult decision and chose the number <span class="font-weight-bold">{{game.getNumEinstein()}}</span>
 			</p>
-			<p class="font-italic">1, 2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz,
-				Buzz, 11, Fizz, 13, 14, Fizz Buzz, 16, 17, Fizz, 19, Buzz, Fizz, 22,
-				23, Fizz, Buzz, 26, Fizz, 28, 29, Fizz Buzz, 31, 32, Fizz, 34, Buzz,
-				Fizz, ...</p>
-		</section>
-	
-		<section class="mt-4" ng-if="sequence==null">
-			<h3 class="mb-4">Do you want to play?</h3>
-			<button type="button" class="btn btn-primary" ng-click="game.generateEinsteinNumber();sequence=null">forces Einstein to select a number</button>
-			<button type="button" class="btn btn-success" ng-disabled="game.getNumEinstein()==0 || game.getNumEinstein()==null || game.getNumEinstein() == undefined" ng-click="run()">Play</button>
-		</section>
-	
-		<section class="jumbotron" ng-if="sequence!=null">
-			<h1 class="display-4">Einstein loves play!</h1>
-			<ul class="list-inline mt-4">
-				<li class="list-inline-item" ng-repeat="value in sequence track by $index">{{value}} ,</li>
-			</ul>
-			<hr class="my-4">
-			<p class="lead">
-				<button class="btn btn-primary btn-lg" ng-click="setNullSequence() ; game.setNumEinstein(undefined)">Back</button>
+			<p class="font-italic" ng-if="game.getNumEinstein()==0 || game.getNumEinstein()==null || game.getNumEinstein() == undefined">...</p>
+			<p class="font-italic">
+				<span class="font-weight-bold">Limits:</span> {{game.getMinNum()}} (min) - {{game.getMaxNum()}} (max)
 			</p>
-		</section>
-	
-		<img src="images/einstein.png" alt="Einstein" class="img-thumb">
-		<p class="font-italic" ng-if="game.getNumEinstein()!=0 && game.getNumEinstein()!=null && game.getNumEinstein() != undefined">
-			Einstein made a difficult decision and chose the number <span class="font-weight-bold">{{game.getNumEinstein()}}</span>
-		</p>
-		<p class="font-italic" ng-if="game.getNumEinstein()==0 || game.getNumEinstein()==null || game.getNumEinstein() == undefined">...</p>
-		<p class="font-italic">
-			<span class="font-weight-bold">Limits:</span> {{game.getMinNum()}} (min) - {{game.getMaxNum()}} (max)
-		</p>
+		</article>
+		
+		<article ng-if="errorGame==true">
+			<div class="alert alert-danger" role="alert">
+			  <h4 class="alert-heading">Error!</h4>
+			  <p>An error has occurred. Click here to play again!</p>
+			  <button type="button" class="btn btn-danger" ng-click="initialize()">Try again</button>
+		  	</div>
+		</article>
 
 	</main>
 
