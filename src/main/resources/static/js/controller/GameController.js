@@ -50,6 +50,7 @@
         	  gameService.run($scope.game.getNumEinstein()).then(function success(response) {
               if (response.data!=null) {
             	  if(response.data.length!=0){
+            		  //Get the sequence
             		  $scope.sequence=response.data;
             	  }else{
             		  $scope.errorGame=true;

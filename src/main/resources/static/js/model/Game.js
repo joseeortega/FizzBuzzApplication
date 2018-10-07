@@ -47,6 +47,7 @@ class Game {
 	 */
   generateEinsteinNumber(){
 	  try {
+		  //Generate random number including Max and Min
 		  this.setNumEinstein(Math.floor(Math.random() * (this.maxNum - this.minNum + 1)) + this.minNum);
 	  } catch (e) {
 		  this.numEinstein=this.minNum;
