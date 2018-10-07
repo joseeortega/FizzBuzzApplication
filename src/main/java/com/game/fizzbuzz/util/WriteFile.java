@@ -43,11 +43,15 @@ public class WriteFile {
     */
 	public void write(ArrayList<String> elements, boolean allInLine) {
 		try {
+			
+			//Generate and get the file
 			File file = generateFile();
 			
 			if (file != null) {
 				BufferedWriter bufferw;
 				bufferw = new BufferedWriter(new FileWriter(file));
+				
+				//Depeding on boolean received ( write the sequence all in line / element per line )
 				if(allInLine) {
 					bufferw.write(elementsToLine(elements));
 				}else {
@@ -76,12 +80,18 @@ public class WriteFile {
 	private File generateFile() {
 		File file = null;
 		try {
+			
+			//Path file
 			File pathToSaveFile = new File("src/main/resources/results/");
 			String fullPath = pathToSaveFile.getAbsolutePath();
+			
+			//Name file
 			UUID id = UUID.randomUUID();
 			Date date = new Date();
 			DateFormat hourdateFormat = new SimpleDateFormat("HH-mm-ss_dd-MM-yyyy");
 			String nameFile = hourdateFormat.format(date)+id;
+			
+			//Create file
 			file = new File(fullPath+"/"+nameFile+".txt");
 		} catch (Exception ex) {
 			Logger.getLogger(getClass().getName()).log(Level.WARNING,createFileExceptionMessage + "\n" + ex.getMessage());

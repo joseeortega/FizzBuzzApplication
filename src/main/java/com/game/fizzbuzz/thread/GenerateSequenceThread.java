@@ -36,7 +36,9 @@ public class GenerateSequenceThread implements Callable<ArrayList<String>>{
 		ArrayList<String> sequence = new ArrayList<String>();
 		
 		try {
+			//Get the sequence
 			sequence=fizzBuzzGame.generateGame();
+			//Write the sequence into the File
 			WriteFile wf = new WriteFile();
 			wf.write(sequence,false);
 		}catch(Exception ex) {

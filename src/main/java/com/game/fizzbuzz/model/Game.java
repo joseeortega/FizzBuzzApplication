@@ -72,10 +72,15 @@ public class Game {
 		this.numEinstein = numEinstein;
 	}
 	
+	
 	/**
-	 * This function is used to generate a hashmap with the limit numbers
-	 * @return numLimits(HashMap<String, Integer>)
-	 */
+    * @name= getNumLimits()
+    * @author= Jose Ortega
+    * @version = 1.0
+    * @description = This function is used to generate a hashmap with the limit numbers
+    * @date= 04-10-2018
+    * @return numLimits(HashMap<String, Integer>)
+    */
 	public HashMap<String, Integer> getNumLimits() {
 		
 		HashMap<String, Integer> numLimits = new HashMap<String, Integer>();
@@ -91,10 +96,16 @@ public class Game {
 		return numLimits;
 	}
 	
+	
+	
 	/**
-	 * This function is used to generate the sequence
-	 * @return fizzBuzzSequence(ArrayList<String>)
-	 */
+    * @name= generateGame()
+    * @author= Jose Ortega
+    * @version = 1.0
+    * @description = This function is used to generate the sequence
+    * @date= 04-10-2018
+    * @return fizzBuzzSequence(ArrayList<String>)
+    */
 	public ArrayList<String> generateGame() {
 		
 		ArrayList<String> fizzBuzzSequence= new ArrayList<String>();
