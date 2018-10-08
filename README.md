@@ -6,3 +6,5 @@ FizzBuzz is a group word game for children to teach them about division. Players
 This app was developed with Java Framework Spring Boot (Server) and Javascript Framework AngularJS (Client) using a code's automation system called Gradle
 
 The IDE used to develop the app was STS Eclipse
+
+* All files generated are in fizzbuzz/src/main/resources/results *
