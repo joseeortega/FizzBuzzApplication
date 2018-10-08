@@ -61,6 +61,7 @@
 			
 		</article>
 		
+		<!-- GAME PANEL -->
 		<article ng-if="errorGame==false">
 			
 			<section class="mt-4" ng-if="sequence==null">
@@ -90,12 +91,15 @@
 			</p>
 		</article>
 		
+		<!-- ERROR GAME PANEL -->
 		<article ng-if="errorGame==true">
+		
 			<div class="alert alert-danger" role="alert">
 			  <h4 class="alert-heading">Error!</h4>
 			  <p>An error has occurred. Click here to play again!</p>
 			  <button type="button" class="btn btn-danger" ng-click="initialize()">Try again</button>
 		  	</div>
+		  	
 		</article>
 
 	</main>

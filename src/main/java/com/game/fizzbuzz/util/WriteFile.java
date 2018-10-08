@@ -51,7 +51,7 @@ public class WriteFile {
 				BufferedWriter bufferw;
 				bufferw = new BufferedWriter(new FileWriter(file));
 				
-				//Depeding on boolean received ( write the sequence all in line / element per line )
+				//Depending on boolean received ( write the sequence all in line / element per line )
 				if(allInLine) {
 					bufferw.write(elementsToLine(elements));
 				}else {
@@ -61,6 +61,7 @@ public class WriteFile {
 					}	
 				}
 				
+				//Close the file				
 				bufferw.close();
 			}
 		} catch (Exception ex) {
