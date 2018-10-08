@@ -1,26 +1,3 @@
-46
-47
-fizz
-49
-buzz
-fizz
-52
-53
-fizz
-buzz
-56
-fizz
-58
-59
-fizz buzz
-61
-62
-fizz
-64
-buzz
-fizz
-67
-68
 fizz
 buzz
 71

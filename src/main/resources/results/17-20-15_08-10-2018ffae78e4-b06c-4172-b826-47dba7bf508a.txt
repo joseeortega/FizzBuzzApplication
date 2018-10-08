@@ -1,21 +1,5 @@
 buzz
 fizz
-37
-38
-fizz
-buzz
-41
-fizz
-43
-44
-fizz
-buzz
-46
-47
-fizz
-49
-buzz
-fizz
 52
 53
 fizz
@@ -24,8 +8,7 @@ buzz
 fizz
 58
 59
-fizz
-buzz
+fizz buzz
 61
 62
 fizz
@@ -40,8 +23,7 @@ buzz
 fizz
 73
 74
-fizz
-buzz
+fizz buzz
 76
 77
 fizz
@@ -56,8 +38,7 @@ buzz
 fizz
 88
 89
-fizz
-buzz
+fizz buzz
 91
 92
 fizz
