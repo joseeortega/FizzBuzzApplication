@@ -40,6 +40,7 @@ public class GenerateSequenceThread implements Callable<ArrayList<String>>{
 			sequence=fizzBuzzGame.generateGame();
 			//Write the sequence into the File
 			WriteFile wf = new WriteFile();
+			//Send true to write the sequence all in line or false to write an element per line
 			wf.write(sequence,false);
 		}catch(Exception ex) {
 			Logger.getLogger(getClass().getName()).log(Level.WARNING,threadUseExceptionMessage + "\n" + ex.getMessage());

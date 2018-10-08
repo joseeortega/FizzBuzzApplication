@@ -111,13 +111,19 @@ public class Game {
 		ArrayList<String> fizzBuzzSequence= new ArrayList<String>();
 		
 		try {
+			
+			//Generate the sequence
 			for (int i = numEinstein; i <= maxNum; i++) {
 				if (i % 3 == 0 || i % 5 == 0) {
-					if (i % 3 == 0) {
-						fizzBuzzSequence.add("fizz");
-					}
-					if (i % 5 == 0) {
-						fizzBuzzSequence.add("buzz");
+					if(i % 3 == 0 && i % 5 == 0) {
+						fizzBuzzSequence.add("fizz buzz");
+					}else {
+						if (i % 3 == 0) {
+							fizzBuzzSequence.add("fizz");
+						}
+						if (i % 5 == 0) {
+							fizzBuzzSequence.add("buzz");
+						}
 					}
 				} else {
 					fizzBuzzSequence.add(Integer.toString(i));
