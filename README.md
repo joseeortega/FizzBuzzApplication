@@ -7,4 +7,4 @@ This app was developed with Java Framework Spring Boot (Server) and Javascript F
 
 The IDE used to develop the app was STS Eclipse
 
-* All files generated are in fizzbuzz/src/main/resources/results *
+All files generated are in fizzbuzz/src/main/resources/results
